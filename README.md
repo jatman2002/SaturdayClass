@@ -7,6 +7,7 @@ In future, as we delve into more languages (e.g. Java) I will separate these int
 
 #THIS WEEK's HOMEWORK#
 1. Clone this repo
-2. Checkout a new branch, call it [name]/12-05-2024
+2. Checkout a new branch, call it 12-05-2024/[name]
 3. Fix OOP-q5.py
-4. Push the branch to remote
+4. Commit the changes to your branch
+5. Push the branch to remote
