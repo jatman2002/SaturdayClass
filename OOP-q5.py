@@ -1,17 +1,8 @@
-# Write a Python program to create a class representing a binary search tree. 
-# Include methods for inserting and searching for elements in the binary tree.
-
 class Node:
-
-    # constructor
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
-
-    def compare(self, to_compare_with):
-        return self.value - to_compare_with
-
 
 class BinarySearchTree:
     def __init__(self):
@@ -19,47 +10,48 @@ class BinarySearchTree:
 
     def search(self, val_to_search):
         current_node = self.root
-
-        while (current_node != None):
-        
-            if current_node.compare(val_to_search) == 0:
+        while current_node is not None:
+            if val_to_search == current_node.value:
                 return True
-
-            if current_node.compare(val_to_search) > 0:
+            elif val_to_search < current_node.value:
                 current_node = current_node.left
-
-            if current_node.compare(val_to_search) < 0:
+            else:
                 current_node = current_node.right
-
         return False
 
     def insert(self, to_insert):
+        new_node = Node(to_insert)
+        if self.root is None:
+            self.root = new_node
+            return True
 
-        root_node = self.root
+        current_node = self.root
+        while True:
+            if to_insert == current_node.value:
+                return False  # Value already exists in the tree
+            elif to_insert < current_node.value:
+                if current_node.left is None:
+                    current_node.left = new_node
+                    return True
+                current_node = current_node.left
+            else:
+                if current_node.right is None:
+                    current_node.right = new_node
+                    return True
+                current_node = current_node.right
 
-        while (self.root != None):
-        
-            if self.root.compare(to_insert) == 0:
-                self.root = root_node
-                return False
-
-            if self.root.compare(to_insert) > 0:
-                self.root = self.root.left
-
-            if self.root.compare(to_insert) < 0:
-                self.root = self.root.right
-
-        self.root = Node(to_insert)
-        self.root = root_node
-        return True
-
-
+# Example usage
 tree = BinarySearchTree()
-tree.insert(15)
-tree.insert(121)
-tree.insert(6)
-tree.insert(12)
-tree.insert(7)
+print(tree.insert(15))  # Output: True (15 inserted)
+print(tree.insert(121)) # Output: True (121 inserted)
+print(tree.insert(6))   # Output: True (6 inserted)
+print(tree.insert(12))  # Output: True (12 inserted)
+print(tree.insert(7))   # Output: True (7 inserted)
+print(tree.insert(15))  # Output: False (15 already exists)
 
-print()
-
+print(tree.search(15))  # Output: True
+print(tree.search(121)) # Output: True
+print(tree.search(6))   # Output: True
+print(tree.search(12))  # Output: True
+print(tree.search(7))   # Output: True
+print(tree.search(10))  # Output: False
