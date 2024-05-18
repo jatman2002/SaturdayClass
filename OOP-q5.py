@@ -2,8 +2,6 @@
 # Include methods for inserting and searching for elements in the binary tree.
 
 class Node:
-
-    # constructor
     def __init__(self, value):
         self.value = value
         self.left = None
@@ -20,38 +18,39 @@ class BinarySearchTree:
     def search(self, val_to_search):
         current_node = self.root
 
-        while (current_node != None):
-        
+        while current_node is not None:
             if current_node.compare(val_to_search) == 0:
                 return True
-
-            if current_node.compare(val_to_search) > 0:
+            elif current_node.compare(val_to_search) > 0:
                 current_node = current_node.left
-
-            if current_node.compare(val_to_search) < 0:
+            else:
                 current_node = current_node.right
 
         return False
 
     def insert(self, to_insert):
+        new_node = Node(to_insert)
 
-        root_node = self.root
+        if self.root is None:
+            self.root = new_node
+            return True
 
-        while (self.root != None):
-        
-            if self.root.compare(to_insert) == 0:
-                self.root = root_node
-                return False
+        current_node = self.root
+        while current_node is not None:
+            if current_node.compare(to_insert) == 0:
+                return False  # Duplicate value, do not insert
+            elif current_node.compare(to_insert) > 0:
+                if current_node.left is None:
+                    current_node.left = new_node
+                    return True
+                current_node = current_node.left
+            else:
+                if current_node.right is None:
+                    current_node.right = new_node
+                    return True
+                current_node = current_node.right
 
-            if self.root.compare(to_insert) > 0:
-                self.root = self.root.left
-
-            if self.root.compare(to_insert) < 0:
-                self.root = self.root.right
-
-        self.root = Node(to_insert)
-        self.root = root_node
-        return True
+        return True  # This line should not be reached
 
 
 tree = BinarySearchTree()
@@ -61,5 +60,10 @@ tree.insert(6)
 tree.insert(12)
 tree.insert(7)
 
-print()
-
+# Example usage
+print(tree.search(15))
+print(tree.search(121))
+print(tree.search(6))
+print(tree.search(12))
+print(tree.search(7))
+print(tree.search(100))  # this will be false
