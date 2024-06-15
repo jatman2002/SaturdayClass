@@ -1,4 +1,6 @@
-# Define a class called Stack to implement a stack data structure
+# A Python program to create a class representing a stack data structure.
+# Include methods for pushing and popping elements.
+
 class Stack:
     # Initialize the stack with an empty list to store items
     def __init__(self):
