@@ -58,7 +58,7 @@ tree = BinarySearchTree()
 tree.insert(15)
 tree.insert(121)
 tree.insert(3)
-tree.insert(12)
+tree.insert(3)
 tree.insert(7)
 
 print()
